@@ -1,17 +1,18 @@
 
-import 'package:e_commerce/features/auth/login_screen.dart';
+import 'package:e_commerce/features/auth/login/login_screen.dart';
+import 'package:e_commerce/features/auth/sign_up/screen.dart';
 import 'package:go_router/go_router.dart';
 
 import 'app_routes.dart';
 
 class RouteGenerator {
   static GoRouter mainRoutingInOurApp = GoRouter(
-    initialLocation: AppRoutes.loginView,
+    initialLocation: AppRoutes.loginScreen,
     // List of Routes
     routes: [
       GoRoute(
-        path: AppRoutes.loginView,
-        name: AppRoutes.loginView,
+        path: AppRoutes.loginScreen,
+        name: AppRoutes.loginScreen,
         builder: (context, state) => LoginScreen(),
       ),
       // GoRoute(
@@ -19,11 +20,11 @@ class RouteGenerator {
       //   name: AppRoutes.loginView,
       //   builder: (context, state) => LoginView(),
       // ),
-      // GoRoute(
-      //   path: AppRoutes.registerView,
-      //   name: AppRoutes.registerView,
-      //   builder: (context, state) => const RegisterView(),
-      // ),
+      GoRoute(
+        path: AppRoutes.signUpScreen,
+        name: AppRoutes.signUpScreen,
+        builder: (context, state) => const SignUpScreen(),
+      ),
       // GoRoute(
       //   path: AppRoutes.forgotPasswordView,
       //   name: AppRoutes.forgotPasswordView,

@@ -1,4 +1,3 @@
-import 'package:e_commerce/core/routing/app_routes.dart';
 import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:e_commerce/core/themes/app_styles.dart';
 import 'package:e_commerce/core/ui/auth_or_verify_hint.dart';
@@ -8,14 +7,14 @@ import 'package:e_commerce/core/ui/primary_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({super.key});
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -24,6 +23,18 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text('Full Name', style: AppStyles.bodyBlackStyle),
+          HightOrWidthSpace(height: 4.0),
+          AppTextFormField(
+            hintText: 'Enter your full name',
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your full name';
+              }
+              return null;
+            },
+          ),
+          HightOrWidthSpace(height: 16.0),
           Text('User Name', style: AppStyles.bodyBlackStyle),
           HightOrWidthSpace(height: 4.0),
           AppTextFormField(
@@ -49,6 +60,20 @@ class _LoginFormState extends State<LoginForm> {
               return null;
             },
           ),
+          HightOrWidthSpace(height: 16.0),
+          Text('Confirm Password', style: AppStyles.bodyBlackStyle),
+          HightOrWidthSpace(height: 4.0),
+          AppTextFormField(
+            hintText: 'Re-enter your password',
+            obscureText: true,
+            isPassword: true,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please confirm your password';
+              }
+              return null;
+            },
+          ),
           HightOrWidthSpace(height: 55.0),
           Center(
             child: AppButton(
@@ -63,14 +88,14 @@ class _LoginFormState extends State<LoginForm> {
               text: 'Login',
             ),
           ),
-          HightOrWidthSpace(height: 350.0),
+          HightOrWidthSpace(height: 150.0),
           Center(
             child: AuthenticationOrVerificationHint(
-              questionText: 'Don\'t have an account? ',
-              actionText: 'Join',
+              questionText: 'Already have an account? ',
+              actionText: 'Login',
               onTap: () {
                 // Handle sign up action
-                GoRouter.of(context).push(AppRoutes.signUpScreen);
+                GoRouter.of(context).pop();
               },
             ),
           ),

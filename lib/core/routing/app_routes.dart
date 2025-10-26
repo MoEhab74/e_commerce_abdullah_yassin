@@ -1,7 +1,7 @@
 class AppRoutes {
   static const String onBoardingView = '/onBoardingView';
-  static const String loginView = '/loginView';
-  static const String registerView = '/registerView';
+  static const String loginScreen = '/loginView';
+  static const String signUpScreen = '/registerView';
   static const String forgotPasswordView = '/forgotPasswordView';
   static const String otpVerificationView = '/otpVerificationView';
   static const String createNewPasswordView = '/createNewPasswordView';

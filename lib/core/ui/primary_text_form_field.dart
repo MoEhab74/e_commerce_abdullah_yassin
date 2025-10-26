@@ -12,6 +12,7 @@ class AppTextFormField extends StatefulWidget {
     this.isPassword,
     this.obscureText,
     this.keyboardType,
+    this.validator,
   });
   final String? hintText;
   final double? width;
@@ -19,6 +20,7 @@ class AppTextFormField extends StatefulWidget {
   final bool? isPassword;
   final bool? obscureText;
   final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
 
   @override
   State<AppTextFormField> createState() => _AppTextFormFieldState();
@@ -39,6 +41,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       width: widget.width ?? 331.w,
       height: widget.height ?? 56.h,
       child: TextFormField(
+        validator: widget.validator,
         obscureText: isObscured,
         decoration: InputDecoration(
           suffixIcon: widget.isPassword != null
@@ -64,6 +67,10 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
             borderSide: BorderSide(color: AppColors.primaryColor),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide(color: Colors.red),
           ),
           filled: true,
           fillColor: AppColors.whiteColor,

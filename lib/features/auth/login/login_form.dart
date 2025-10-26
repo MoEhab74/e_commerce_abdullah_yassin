@@ -58,6 +58,7 @@ class _LoginFormState extends State<LoginForm> {
                 // Handle login action
                 if (_formKey.currentState!.validate()) {
                   // Login logic here from the cubit or bloc
+                  GoRouter.of(context).pushReplacement(AppRoutes.homeScreen);
                 }
               },
               text: 'Login',

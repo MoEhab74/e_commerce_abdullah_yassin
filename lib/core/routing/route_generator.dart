@@ -1,6 +1,7 @@
 
 import 'package:e_commerce/features/auth/login/login_screen.dart';
 import 'package:e_commerce/features/auth/sign_up/screen.dart';
+import 'package:e_commerce/features/home/home_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import 'app_routes.dart';
@@ -15,11 +16,11 @@ class RouteGenerator {
         name: AppRoutes.loginScreen,
         builder: (context, state) => LoginScreen(),
       ),
-      // GoRoute(
-      //   path: AppRoutes.loginView,
-      //   name: AppRoutes.loginView,
-      //   builder: (context, state) => LoginView(),
-      // ),
+      GoRoute(
+        path: AppRoutes.homeScreen,
+        name: AppRoutes.homeScreen,
+        builder: (context, state) => HomeScreen(),
+      ),
       GoRoute(
         path: AppRoutes.signUpScreen,
         name: AppRoutes.signUpScreen,

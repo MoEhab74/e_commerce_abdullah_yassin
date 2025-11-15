@@ -55,11 +55,12 @@ class _LoginFormState extends State<LoginForm> {
               color: AppColors.primaryColor,
               textColor: AppColors.whiteColor,
               onPressed: () {
+                GoRouter.of(context).pushReplacement(AppRoutes.homeScreen);
                 // Handle login action
-                if (_formKey.currentState!.validate()) {
-                  // Login logic here from the cubit or bloc
-                  GoRouter.of(context).pushReplacement(AppRoutes.homeScreen);
-                }
+                // if (_formKey.currentState!.validate()) {
+                //   // Login logic here from the cubit or bloc
+                //   GoRouter.of(context).pushReplacement(AppRoutes.homeScreen);
+                // }
               },
               text: 'Login',
             ),

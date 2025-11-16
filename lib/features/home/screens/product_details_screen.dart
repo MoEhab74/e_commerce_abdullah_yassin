@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:e_commerce/features/home/widgets/product_details_body.dart';
 import 'package:flutter/material.dart';
 
@@ -8,16 +9,10 @@ class ProductDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product Details'),
+        title: const Text('Details'),
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        foregroundColor: Theme.of(context).colorScheme.secondary,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.shopping_cart),
-          ),
-        ],
+        foregroundColor: AppColors.primaryColor,
       ),
       body: const ProductsDetailsBody(),
     );

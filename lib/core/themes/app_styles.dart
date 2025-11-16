@@ -50,4 +50,9 @@ class AppStyles {
     fontWeight: FontWeight.w500,
     color: const Color(0xff1F2C37),
   );
+  static TextStyle cartTitleStyle = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.blackColor,
+  );
 }

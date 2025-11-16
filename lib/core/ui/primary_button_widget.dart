@@ -1,4 +1,3 @@
-
 import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:e_commerce/core/themes/app_styles.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,7 @@ class AppButton extends StatelessWidget {
     this.height,
     this.borderRadius,
     this.textColor,
+    this.padding,
   });
   final void Function()? onPressed;
   final String text;
@@ -22,22 +22,23 @@ class AppButton extends StatelessWidget {
   final double? height;
   final double? borderRadius;
   final Color? textColor;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
+    return Padding(
+      padding: padding ?? const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        onPressed: onPressed,
 
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color ?? AppColors.primaryColor,
-        fixedSize: Size(width?.w ?? 331.w, height?.h ?? 56.h),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius?.r ?? 8.r),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color ?? AppColors.primaryColor,
+          fixedSize: Size(width?.w ?? 331.w, height?.h ?? 56.h),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius?.r ?? 8.r),
+          ),
         ),
-      ),
-      child: Text(
-        text,
-        style: AppStyles.buttonTextStyle,
+        child: Text(text, style: AppStyles.buttonTextStyle),
       ),
     );
   }

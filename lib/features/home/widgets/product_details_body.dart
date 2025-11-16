@@ -1,5 +1,6 @@
 import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:e_commerce/core/themes/app_fonts.dart';
+import 'package:e_commerce/core/ui/primary_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -123,39 +124,10 @@ class ProductsDetailsBody extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 16.w),
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Add to cart action
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryColor,
-                    padding: EdgeInsets.symmetric(vertical: 14.h),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.shopping_bag_outlined,
-                        color: Colors.white,
-                        size: 24.sp,
-                      ),
-                      SizedBox(width: 16.w),
-                      Text(
-                        'Add to Cart',
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              Expanded(child: AppButton(
+                text: 'Add to Cart',
+                onPressed: () {},
+              )),
             ],
           ),
         ),

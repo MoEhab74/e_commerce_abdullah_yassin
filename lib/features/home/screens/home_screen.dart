@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/cart/screen.dart';
 import 'package:e_commerce/features/home/widgets/home_screen_body.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
   var pages = [
     const HomeScreenBody(),
-    const Center(child: Text('Cart Screen')),
+    const CartScreenBody(),
     const Center(child: Text('Account Screen')),
   ];
   @override

@@ -1,7 +1,8 @@
 
 import 'package:e_commerce/features/auth/login/login_screen.dart';
 import 'package:e_commerce/features/auth/sign_up/screen.dart';
-import 'package:e_commerce/features/home/home_screen.dart';
+import 'package:e_commerce/features/home/screens/home_screen.dart';
+import 'package:e_commerce/features/home/screens/product_details_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import 'app_routes.dart';
@@ -26,11 +27,11 @@ class RouteGenerator {
         name: AppRoutes.signUpScreen,
         builder: (context, state) => const SignUpScreen(),
       ),
-      // GoRoute(
-      //   path: AppRoutes.forgotPasswordView,
-      //   name: AppRoutes.forgotPasswordView,
-      //   builder: (context, state) => const ForgetPassword(),
-      // ),
+      GoRoute(
+        path: AppRoutes.productDetailsScreen,
+        name: AppRoutes.productDetailsScreen,
+        builder: (context, state) => const ProductDetailScreen(),
+      ),
       // GoRoute(
       //   path: AppRoutes.otpVerificationView,
       //   name: AppRoutes.otpVerificationView,

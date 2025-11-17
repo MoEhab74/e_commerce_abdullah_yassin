@@ -40,7 +40,7 @@ class OrderDetails extends StatelessWidget {
           SizedBox(height: 24.h),
           Divider(
             thickness: 1,
-            color: AppColors.secondaryColor.withOpacity(0.5),
+            color: AppColors.secondaryColor.withValues(alpha: 0.5),
             endIndent: 16.0.w,
             indent: 16.0.w,
           ),

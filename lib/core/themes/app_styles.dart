@@ -55,4 +55,12 @@ class AppStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.blackColor,
   );
+  static TextStyle discriptionStyle = TextStyle(
+    fontFamily: AppFonts.secondaryFont,
+    fontSize: 16.sp,
+    height: 1.5,
+    color: AppColors.secondaryColor,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.0,
+  );
 }

@@ -1,5 +1,5 @@
 import 'package:e_commerce/core/themes/app_colors.dart';
-import 'package:e_commerce/core/themes/app_fonts.dart';
+import 'package:e_commerce/core/themes/app_styles.dart';
 import 'package:e_commerce/core/ui/primary_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -79,14 +79,7 @@ class ProductsDetailsBody extends StatelessWidget {
                 // Product description
                 SelectableText(
                   'Blue T Shirt . Good for All Men and Suits for All of Them.Blue T Shirt . Good for All Men and Suits for All of Them',
-                  style: TextStyle(
-                    fontFamily: AppFonts.secondaryFont,
-                    fontSize: 16.sp,
-                    height: 1.5,
-                    color: AppColors.secondaryColor,
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: 0.0,
-                  ),
+                  style: AppStyles.discriptionStyle,
                   textAlign: TextAlign.justify,
                 ),
               ],

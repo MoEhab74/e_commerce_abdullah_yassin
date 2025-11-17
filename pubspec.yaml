@@ -42,6 +42,7 @@ dependencies:
   lottie: ^3.3.2
   pretty_dio_logger: ^1.4.0
   dartz: ^0.10.1
+  animated_snack_bar: ^0.4.0
 
 
 dev_dependencies:

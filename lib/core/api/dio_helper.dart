@@ -25,7 +25,7 @@ class DioHelper {
   static Future<AppResponse> getRequest(String path) async {
     try {
       final response = await _dio.get(path);
-      if (response.statusCode == 200 || response.statusCode == 201) {
+      if (response.statusCode == 200) {
         return AppResponse(isSuccess: true, data: response.data, statusCode: response.statusCode);
       } else {
         return AppResponse(

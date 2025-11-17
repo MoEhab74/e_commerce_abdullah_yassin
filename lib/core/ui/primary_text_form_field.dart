@@ -62,15 +62,15 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(color: AppColors.borderGrayColor),
+            borderSide: const BorderSide(color: AppColors.borderGrayColor),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(color: AppColors.primaryColor),
+            borderSide: const BorderSide(color: AppColors.primaryColor),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(color: Colors.red),
+            borderSide: const BorderSide(color: Colors.red),
           ),
           filled: true,
           fillColor: AppColors.whiteColor,

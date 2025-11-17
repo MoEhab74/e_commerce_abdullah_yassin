@@ -24,7 +24,7 @@ class _SignUpFormState extends State<SignUpForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Full Name', style: AppStyles.bodyBlackStyle),
-          HightOrWidthSpace(height: 4.0),
+          const HightOrWidthSpace(height: 4.0),
           AppTextFormField(
             hintText: 'Enter your full name',
             validator: (value) {
@@ -34,9 +34,9 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
-          HightOrWidthSpace(height: 16.0),
+          const HightOrWidthSpace(height: 16.0),
           Text('User Name', style: AppStyles.bodyBlackStyle),
-          HightOrWidthSpace(height: 4.0),
+          const HightOrWidthSpace(height: 4.0),
           AppTextFormField(
             hintText: 'Enter your user name',
             validator: (value) {
@@ -46,9 +46,9 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
-          HightOrWidthSpace(height: 16.0),
+          const HightOrWidthSpace(height: 16.0),
           Text('Password', style: AppStyles.bodyBlackStyle),
-          HightOrWidthSpace(height: 4.0),
+          const HightOrWidthSpace(height: 4.0),
           AppTextFormField(
             hintText: 'Enter your password',
             obscureText: true,
@@ -60,9 +60,9 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
-          HightOrWidthSpace(height: 16.0),
+          const HightOrWidthSpace(height: 16.0),
           Text('Confirm Password', style: AppStyles.bodyBlackStyle),
-          HightOrWidthSpace(height: 4.0),
+          const HightOrWidthSpace(height: 4.0),
           AppTextFormField(
             hintText: 'Re-enter your password',
             obscureText: true,
@@ -74,7 +74,7 @@ class _SignUpFormState extends State<SignUpForm> {
               return null;
             },
           ),
-          HightOrWidthSpace(height: 55.0),
+          const HightOrWidthSpace(height: 55.0),
           Center(
             child: AppButton(
               color: AppColors.primaryColor,
@@ -88,7 +88,7 @@ class _SignUpFormState extends State<SignUpForm> {
               text: 'Login',
             ),
           ),
-          HightOrWidthSpace(height: 150.0),
+          const HightOrWidthSpace(height: 150.0),
           Center(
             child: AuthenticationOrVerificationHint(
               questionText: 'Already have an account? ',

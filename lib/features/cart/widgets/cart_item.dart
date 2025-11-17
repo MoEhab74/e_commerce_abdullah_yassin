@@ -5,10 +5,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'quantity_selector.dart';
 
-class CartItem extends StatelessWidget {
+class CartItem extends StatefulWidget {
   const CartItem({
     super.key,
   });
+
+  @override
+  State<CartItem> createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
+  int quantity = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -92,11 +99,17 @@ class CartItem extends StatelessWidget {
                     // Quantity Selector
                     QuantitySelector(
                       icon: Icons.remove,
-                      onTap: () {},
+                      onTap: () {
+                        setState(() {
+                          if (quantity > 0) {
+                            quantity--;
+                          }
+                        });
+                      },
                     ),
                     SizedBox(width: 8.w),
                     Text(
-                      ' 1 ',
+                      '$quantity',
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
@@ -106,7 +119,11 @@ class CartItem extends StatelessWidget {
                     SizedBox(width: 8.w),
                     QuantitySelector(
                       icon: Icons.add,
-                      onTap: () {},
+                      onTap: () {
+                        setState(() {
+                          quantity++;
+                        });
+                      },
                       iconPadding: EdgeInsets.zero,
                     ),
                   ],

@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/account/screen_body.dart';
+import 'package:e_commerce/features/account/screens/account_screen_body.dart';
 import 'package:e_commerce/features/cart/screen_body.dart';
 import 'package:e_commerce/features/home/widgets/home_screen_body.dart';
 import 'package:flutter/material.dart';

@@ -1,9 +1,11 @@
+import 'package:e_commerce/core/routing/app_routes.dart';
 import 'package:e_commerce/core/ui/app_divider.dart';
 import 'package:e_commerce/core/ui/screen_title.dart';
 import 'package:e_commerce/features/account/widgets/account_list_tile.dart';
 import 'package:e_commerce/features/account/widgets/log_out_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class AccountScreenBody extends StatelessWidget {
   const AccountScreenBody({super.key});
@@ -40,7 +42,9 @@ class AccountScreenBody extends StatelessWidget {
           AccountListTile(
             title: 'Address Book',
             icon: Icons.location_on,
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).push(AppRoutes.addressScreenBody);
+            },
           ),
           const AppDivider(
             indent: 64,

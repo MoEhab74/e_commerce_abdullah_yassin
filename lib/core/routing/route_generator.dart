@@ -1,4 +1,5 @@
 
+import 'package:e_commerce/features/account/screens/address_screen_body.dart';
 import 'package:e_commerce/features/auth/login/login_screen.dart';
 import 'package:e_commerce/features/auth/sign_up/screen.dart';
 import 'package:e_commerce/features/home/screens/home_screen.dart';
@@ -15,12 +16,12 @@ class RouteGenerator {
       GoRoute(
         path: AppRoutes.loginScreen,
         name: AppRoutes.loginScreen,
-        builder: (context, state) => LoginScreen(),
+        builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
         path: AppRoutes.homeScreen,
         name: AppRoutes.homeScreen,
-        builder: (context, state) => HomeScreen(),
+        builder: (context, state) => const HomeScreen(),
       ),
       GoRoute(
         path: AppRoutes.signUpScreen,
@@ -32,21 +33,11 @@ class RouteGenerator {
         name: AppRoutes.productDetailsScreen,
         builder: (context, state) => const ProductDetailScreen(),
       ),
-      // GoRoute(
-      //   path: AppRoutes.otpVerificationView,
-      //   name: AppRoutes.otpVerificationView,
-      //   builder: (context, state) => const VerifyOtpView(),
-      // ),
-      // GoRoute(
-      //   path: AppRoutes.createNewPasswordView,
-      //   name: AppRoutes.createNewPasswordView,
-      //   builder: (context, state) => CreateNewPasswordView(),
-      // ),
-      // GoRoute(
-      //   path: AppRoutes.homeView,
-      //   name: AppRoutes.homeView,
-      //   builder: (context, state) => HomeView(),
-      // ),
+      GoRoute(
+        path: AppRoutes.addressScreenBody,
+        name: AppRoutes.addressScreenBody,
+        builder: (context, state) => const AddressScreenBody(),
+      ),
       
     ],
   );

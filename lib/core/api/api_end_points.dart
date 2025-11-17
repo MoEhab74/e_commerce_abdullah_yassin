@@ -1,10 +1,10 @@
 class ApiEndPoints {
   static const String baseUrl = "https://fakestoreapi.com";
-  static const String login = "/auth/login";
-  static const String register = "/users";
-  static const String getProducts = "/products";
-  static const String getCatogriesORCategoryProducts = "/products/categories"; // Don't forget to add category name at the end
-  static const String getCategory = "/products/categories";
-  static const String getCart = "/carts/user/"; // Don't forget to add user id at the end
-  static const String getAllUsers = "/users";
+  static const String login = "$baseUrl/auth/login";
+  static const String register = "$baseUrl/users";
+  static const String getProducts = "$baseUrl/products";
+  static const String getCatogriesORCategoryProducts = "$baseUrl/products/categories"; // Don't forget to add category name at the end
+  static const String getCategory = "$baseUrl/products/categories";
+  static const String getCart = "$baseUrl/carts/user/"; // Don't forget to add user id at the end
+  static const String getAllUsers = "$baseUrl/users";
 }

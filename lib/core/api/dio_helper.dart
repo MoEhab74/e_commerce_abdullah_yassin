@@ -23,21 +23,22 @@ class DioHelper {
 
 
   static Future<AppResponse> getRequest(String path) async {
-    // Tey-Catch for handling the request errors
     try {
       final response = await _dio.get(path);
-      // status code for checking if the request is done successfully
-      if (response.statusCode == 200) {
-        return AppResponse(isSuccess: true, data: response.data);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return AppResponse(isSuccess: true, data: response.data, statusCode: response.statusCode);
       } else {
         return AppResponse(
           isSuccess: false,
+          data: response.data,
+          statusCode: response.statusCode,
         );
       }
     } on DioException catch (e) {
       return AppResponse(
         isSuccess: false,
         exception: e,
+        statusCode: e.response?.statusCode,
       );
     }
   }
@@ -50,17 +51,20 @@ class DioHelper {
     try {
       final response = await _dio.post(path, data: data);
       // status code for checking if the request is done successfully
-      if (response.statusCode == 200) {
-        return AppResponse(isSuccess: true, data: response.data);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return AppResponse(isSuccess: true, data: response.data, statusCode: response.statusCode);
       } else {
         return AppResponse(
           isSuccess: false,
+          data: response.data,
+          statusCode: response.statusCode,
         );
       }
     } on DioException catch (e) {
       return AppResponse(
         isSuccess: false,
         exception: e,
+        statusCode: e.response?.statusCode,
       );
     }
   }

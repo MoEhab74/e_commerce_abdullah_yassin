@@ -10,6 +10,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Test API Call
+    // AuthRepo().login("johnd", "m38rmF\$");
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

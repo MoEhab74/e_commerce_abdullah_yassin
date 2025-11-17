@@ -41,6 +41,7 @@ dependencies:
   cached_network_image: ^3.4.1
   lottie: ^3.3.2
   pretty_dio_logger: ^1.4.0
+  dartz: ^0.10.1
 
 
 dev_dependencies:

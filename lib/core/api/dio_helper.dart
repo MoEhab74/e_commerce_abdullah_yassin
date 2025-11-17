@@ -1,12 +1,28 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce/core/api/api_end_points.dart';
 import 'package:e_commerce/core/api/app_response.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioHelper {
   static const String baseUrl = ApiEndPoints.baseUrl;
   static final _dio = Dio(BaseOptions(baseUrl: baseUrl));
+  static void init() {
+    // Adding PrettyDioLogger for logging the requests in a pretty way
+    _dio.interceptors.add(
+      PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: false,
+        error: true,
+        compact: true,
+        maxWidth: 90,
+      ),
+    );
+  }
 
-  static Future<AppResponse> getData(String path) async {
+
+  static Future<AppResponse> getRequest(String path) async {
     // Tey-Catch for handling the request errors
     try {
       final response = await _dio.get(path);
@@ -25,8 +41,8 @@ class DioHelper {
       );
     }
   }
-
-  static Future<AppResponse> sendData(
+  
+  static Future<AppResponse> postRequest(
     String path, {
     Map<String, dynamic>? data,
   }) async {

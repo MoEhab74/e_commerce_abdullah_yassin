@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:e_commerce/core/api/api_end_points.dart';
 import 'package:e_commerce/core/api/app_response.dart';
 
 class DioHelper {
-  static const String baseUrl = 'https://thimar.amr.aait-d.com/api/';
+  static const String baseUrl = ApiEndPoints.baseUrl;
   static final _dio = Dio(BaseOptions(baseUrl: baseUrl));
 
   static Future<AppResponse> getData(String path) async {

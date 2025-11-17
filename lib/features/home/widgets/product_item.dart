@@ -30,7 +30,7 @@ class ProductItem extends StatelessWidget {
               fit: BoxFit.fill,
             ),
             SizedBox(height: 8.h),
-            Text(
+            const Text(
               'Product Name',
               style: TextStyle(
                 fontSize: 16,
@@ -41,7 +41,7 @@ class ProductItem extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             SizedBox(height: 4.h),
-            Text(
+            const Text(
               '\$99.99',
               style: TextStyle(
                 fontSize: 14,

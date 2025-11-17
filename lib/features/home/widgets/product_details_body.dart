@@ -25,7 +25,7 @@ class ProductsDetailsBody extends StatelessWidget {
                     width: 340.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
-                      image: DecorationImage(
+                      image:const DecorationImage(
                         image: NetworkImage(
                           'https://webandcrafts.com/_next/image?url=https%3A%2F%2Fadmin.wac.co%2Fuploads%2FWhat_is_E_commerce_and_What_are_its_Applications_2_d2eb0d4402.jpg&w=4500&q=90',
                         ),

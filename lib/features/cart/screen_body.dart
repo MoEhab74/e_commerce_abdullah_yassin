@@ -1,5 +1,6 @@
 import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:e_commerce/core/ui/primary_button_widget.dart';
+import 'package:e_commerce/core/ui/screen_title.dart';
 import 'package:e_commerce/features/cart/widgets/cart_item.dart';
 import 'package:e_commerce/features/cart/widgets/order_details.dart';
 import 'package:flutter/material.dart';
@@ -17,19 +18,7 @@ class CartScreenBody extends StatelessWidget {
             child: Column(
               children: [
                 // Title
-                const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Center(
-                    child: Text(
-                      'My Cart',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.blackColor,
-                      ),
-                    ),
-                  ),
-                ),
+               const ScreenTitle(title: 'My Cart'),
                 // List of Cart Items
                 ListView.builder(
                   shrinkWrap: true,
@@ -40,7 +29,7 @@ class CartScreenBody extends StatelessWidget {
                   },
                 ),
                 // subtotal, vat and shipping fees
-                OrderDetails(),
+                const OrderDetails(),
               ],
             ),
           ),
@@ -85,5 +74,3 @@ class CartScreenBody extends StatelessWidget {
     );
   }
 }
-
-

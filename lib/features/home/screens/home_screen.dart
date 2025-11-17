@@ -1,4 +1,5 @@
-import 'package:e_commerce/features/cart/screen.dart';
+import 'package:e_commerce/features/account/screen_body.dart';
+import 'package:e_commerce/features/cart/screen_body.dart';
 import 'package:e_commerce/features/home/widgets/home_screen_body.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   var pages = [
     const HomeScreenBody(),
     const CartScreenBody(),
-    const Center(child: Text('Account Screen')),
+    const AccountScreenBody(),
   ];
   @override
   Widget build(BuildContext context) {

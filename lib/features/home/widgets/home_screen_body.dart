@@ -22,11 +22,11 @@ class HomeScreenBody extends StatelessWidget {
           SizedBox(height: 16.0.h),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0).w,
-            child: SearchAndFilter(),
+            child: const SearchAndFilter(),
           ),
           SizedBox(height: 16.0.h),
           // Categories List View
-          CategoriesListView(),
+          const CategoriesListView(),
           SizedBox(height: 16.0.h),
           GridView.builder(
             shrinkWrap: true,
@@ -39,7 +39,7 @@ class HomeScreenBody extends StatelessWidget {
               childAspectRatio: 0.75,
             ),
             itemBuilder: (context, index) {
-              return ProductItem();
+              return const ProductItem();
             },
             itemCount: 10,
           ),

@@ -1,3 +1,4 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:e_commerce/core/routing/app_routes.dart';
 import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:e_commerce/core/themes/app_styles.dart';
@@ -6,6 +7,7 @@ import 'package:e_commerce/core/ui/hight_or_width_space.dart';
 import 'package:e_commerce/core/ui/loading_lottie.dart';
 import 'package:e_commerce/core/ui/primary_button_widget.dart';
 import 'package:e_commerce/core/ui/primary_text_form_field.dart';
+import 'package:e_commerce/core/utils/animated_snack_bar.dart';
 import 'package:e_commerce/features/auth/cubit/auth_cubit.dart';
 import 'package:e_commerce/features/auth/cubit/auth_states.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +63,22 @@ class _LoginFormState extends State<LoginForm> {
           BlocConsumer<AuthCubit, AuthStates>(
             listener: (context, state) {
               // Here i'll handle the states for showing snackbars or navigation
-              
+              if(state is AuthFailureState){
+                showAnimatedSnackbar(
+                  context,
+                  message: state.errorMessage,
+                  type: AnimatedSnackBarType.error,
+                );
+              }
+              else if(state is AuthSuccessState){
+                showAnimatedSnackbar(
+                  context,
+                  message: 'Login Successful',
+                  type: AnimatedSnackBarType.success,
+                );
+                // Navigate to home screen
+                GoRouter.of(context).pushReplacement(AppRoutes.homeScreen);
+              }
             },
             builder: (context, state) {
               // Different builder based on state
@@ -73,7 +90,6 @@ class _LoginFormState extends State<LoginForm> {
                   color: AppColors.primaryColor,
                   textColor: AppColors.whiteColor,
                   onPressed: () {
-                    GoRouter.of(context).pushReplacement(AppRoutes.homeScreen);
                     // Handle login action
                     if (_formKey.currentState!.validate()) {
                       // Login logic here from the cubit or bloc
@@ -81,9 +97,9 @@ class _LoginFormState extends State<LoginForm> {
                         username: _usernameController.text,
                         password: _passwordController.text,
                       );
-                      GoRouter.of(
-                        context,
-                      ).pushReplacement(AppRoutes.homeScreen);
+                      // GoRouter.of(
+                      //   context,
+                      // ).pushReplacement(AppRoutes.homeScreen);
                     }
                   },
                   text: 'Login',

@@ -1,9 +1,11 @@
-
+import 'package:e_commerce/core/utils/service_locator.dart';
 import 'package:e_commerce/features/account/screens/address_screen_body.dart';
+import 'package:e_commerce/features/auth/cubit/auth_cubit.dart';
 import 'package:e_commerce/features/auth/login/login_screen.dart';
 import 'package:e_commerce/features/auth/sign_up/screen.dart';
 import 'package:e_commerce/features/home/screens/home_screen.dart';
 import 'package:e_commerce/features/home/screens/product_details_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'app_routes.dart';
@@ -16,7 +18,10 @@ class RouteGenerator {
       GoRoute(
         path: AppRoutes.loginScreen,
         name: AppRoutes.loginScreen,
-        builder: (context, state) => const LoginScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => locator<AuthCubit>(),
+          child: const LoginScreen(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.homeScreen,
@@ -38,7 +43,6 @@ class RouteGenerator {
         name: AppRoutes.addressScreenBody,
         builder: (context, state) => const AddressScreenBody(),
       ),
-      
     ],
   );
 }

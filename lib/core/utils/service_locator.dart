@@ -8,6 +8,8 @@ GetIt locator = GetIt.instance;
 void setUpServiceLocator() {
   // LazySingleton ===> Single instance throughout the app lifecycle,
   // and created when it is requested for the first time only
+
+  // AuthRepo depends on DioHelper ===> So DioHelper should be registered first
   locator.registerLazySingleton<DioHelper>(() => DioHelper());
   locator.registerLazySingleton<AuthRepo>(() => AuthRepo(locator<DioHelper>()));
 

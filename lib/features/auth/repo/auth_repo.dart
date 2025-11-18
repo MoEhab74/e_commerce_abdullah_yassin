@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/core/api/api_end_points.dart';
 import 'package:e_commerce/core/api/dio_helper.dart';
+import 'package:e_commerce/core/utils/secure_local_storage.dart';
+import 'package:e_commerce/core/utils/service_locator.dart';
 import 'package:e_commerce/features/auth/models/login_response_model.dart';
 
 class AuthRepo {
@@ -13,20 +15,28 @@ class AuthRepo {
     String username,
     String password,
   ) async {
-    
     final response = await _dioHelper.postRequest(
       ApiEndPoints.login,
       // Instead of passing data like this, we can have a user model and pass its toJson() method
       data: {'username': username, 'password': password},
     );
     if (response.isSuccess) {
-      log('Login successful: ${response.data}');
+      var loginResponse = LoginResponseModel.fromJson(response.data);
+      // Get the token
+      String token = loginResponse.token;
+      // Save the token
+      await locator<SecureLocalStorageHelper>().writeData('token', token);
+      log('Token saved successfully');
       // Login successful ===> Take the Token which is inside the response data and return it
-      return Right(LoginResponseModel.fromJson(response.data));
+      log('Login successful: ${response.data}');
+      return Right(loginResponse);
     } else {
-      // Better diagnostics for failures
-      log('Login failed. statusCode=${response.statusCode}, data=${response.data},\nmessage=${response.errorMessage}');
-      final String msg = response.errorMessage ?? 'Request failed (status: ${response.statusCode ?? 'unknown'})';
+      final String msg =
+          response.errorMessage ??
+          'Request failed (status: ${response.statusCode ?? 'unknown'})';
+      log(
+        'Login failed. statusCode=${response.statusCode}, data=${response.data},\nmessage=${response.errorMessage}',
+      );
       return Left(msg);
     }
   }

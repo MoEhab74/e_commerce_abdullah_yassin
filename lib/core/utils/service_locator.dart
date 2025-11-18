@@ -1,4 +1,5 @@
 import 'package:e_commerce/core/api/dio_helper.dart';
+import 'package:e_commerce/core/utils/secure_local_storage.dart';
 import 'package:e_commerce/features/auth/repo/auth_repo.dart';
 import 'package:e_commerce/features/auth/cubit/auth_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -15,4 +16,9 @@ void setUpServiceLocator() {
 
   // Register AuthCubit as factory ===> New instance each time
   locator.registerFactory<AuthCubit>(() => AuthCubit());
+
+  // Register the FlutterSecureStorage as LazySingleton
+  locator.registerLazySingleton<SecureLocalStorageHelper>(
+    () => SecureLocalStorageHelper(),
+  );
 }

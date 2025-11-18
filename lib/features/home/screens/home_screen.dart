@@ -1,3 +1,5 @@
+import 'package:e_commerce/core/utils/secure_local_storage.dart';
+import 'package:e_commerce/core/utils/service_locator.dart';
 import 'package:e_commerce/features/account/screens/account_screen_body.dart';
 import 'package:e_commerce/features/cart/screen_body.dart';
 import 'package:e_commerce/features/home/widgets/home_screen_body.dart';
@@ -19,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    locator<SecureLocalStorageHelper>().deleteData('token');
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,

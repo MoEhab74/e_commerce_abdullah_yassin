@@ -3,11 +3,13 @@ import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:e_commerce/core/themes/app_styles.dart';
 import 'package:e_commerce/core/ui/auth_or_verify_hint.dart';
 import 'package:e_commerce/core/ui/hight_or_width_space.dart';
+import 'package:e_commerce/core/ui/loading_lottie.dart';
 import 'package:e_commerce/core/ui/primary_button_widget.dart';
 import 'package:e_commerce/core/ui/primary_text_form_field.dart';
-import 'package:e_commerce/core/utils/service_locator.dart';
-import 'package:e_commerce/features/auth/repo/auth_repo.dart';
+import 'package:e_commerce/features/auth/cubit/auth_cubit.dart';
+import 'package:e_commerce/features/auth/cubit/auth_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginForm extends StatefulWidget {
@@ -18,24 +20,12 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  bool isLoading = false;
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    // Test the API call
-    locator<AuthRepo>().login("johnd", "m38rmF\$").then((result) {
-      result.fold(
-        (failure) {
-          // Handle failure
-          debugPrint('Login failed: $failure');
-        },
-        (loginResponse) {
-          // Handle success
-          debugPrint('Login successful: ${loginResponse.toJson().toString()}');
-        },
-      );
-    });
-   return Form(
+    return Form(
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,6 +33,7 @@ class _LoginFormState extends State<LoginForm> {
           Text('User Name', style: AppStyles.bodyBlackStyle),
           const HightOrWidthSpace(height: 4.0),
           AppTextFormField(
+            controller: _usernameController,
             hintText: 'Enter your user name',
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -55,6 +46,7 @@ class _LoginFormState extends State<LoginForm> {
           Text('Password', style: AppStyles.bodyBlackStyle),
           const HightOrWidthSpace(height: 4.0),
           AppTextFormField(
+            controller: _passwordController,
             hintText: 'Enter your password',
             obscureText: true,
             isPassword: true,
@@ -66,20 +58,38 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
           const HightOrWidthSpace(height: 55.0),
-          Center(
-            child: AppButton(
-              color: AppColors.primaryColor,
-              textColor: AppColors.whiteColor,
-              onPressed: () {
-                GoRouter.of(context).pushReplacement(AppRoutes.homeScreen);
-                // Handle login action
-                // if (_formKey.currentState!.validate()) {
-                //   // Login logic here from the cubit or bloc
-                //   GoRouter.of(context).pushReplacement(AppRoutes.homeScreen);
-                // }
-              },
-              text: 'Login',
-            ),
+          BlocConsumer<AuthCubit, AuthStates>(
+            listener: (context, state) {
+              // Here i'll handle the states for showing snackbars or navigation
+              
+            },
+            builder: (context, state) {
+              // Different builder based on state
+              if (state is AuthLoadingState) {
+                return const Center(child: LoadingLottie());
+              }
+              return Center(
+                child: AppButton(
+                  color: AppColors.primaryColor,
+                  textColor: AppColors.whiteColor,
+                  onPressed: () {
+                    GoRouter.of(context).pushReplacement(AppRoutes.homeScreen);
+                    // Handle login action
+                    if (_formKey.currentState!.validate()) {
+                      // Login logic here from the cubit or bloc
+                      context.read<AuthCubit>().login(
+                        username: _usernameController.text,
+                        password: _passwordController.text,
+                      );
+                      GoRouter.of(
+                        context,
+                      ).pushReplacement(AppRoutes.homeScreen);
+                    }
+                  },
+                  text: 'Login',
+                ),
+              );
+            },
           ),
           const HightOrWidthSpace(height: 350.0),
           Center(
@@ -97,7 +107,3 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 }
-
-
- 
-    

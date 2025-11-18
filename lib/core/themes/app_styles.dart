@@ -63,4 +63,10 @@ class AppStyles {
     fontWeight: FontWeight.w400,
     letterSpacing: 0.0,
   );
+  static TextStyle errorTextStyle = TextStyle(
+    fontFamily: AppFonts.mainAppFont,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+    color: Colors.red,
+  );
 }

@@ -43,6 +43,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   dartz: ^0.10.1
   animated_snack_bar: ^0.4.0
+  get_it: ^9.0.5
 
 
 dev_dependencies:

@@ -6,13 +6,15 @@ import 'package:e_commerce/core/api/dio_helper.dart';
 import 'package:e_commerce/features/auth/models/login_response_model.dart';
 
 class AuthRepo {
+  final DioHelper _dioHelper;
+  AuthRepo(this._dioHelper);
   // login method
   Future<Either<String, LoginResponseModel>> login(
     String username,
     String password,
   ) async {
     
-    final response = await DioHelper.postRequest(
+    final response = await _dioHelper.postRequest(
       ApiEndPoints.login,
       // Instead of passing data like this, we can have a user model and pass its toJson() method
       data: {'username': username, 'password': password},

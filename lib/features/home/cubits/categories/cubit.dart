@@ -1,5 +1,5 @@
 import 'package:e_commerce/core/utils/service_locator.dart';
-import 'package:e_commerce/features/cart/cubits/categories/state.dart';
+import 'package:e_commerce/features/home/cubits/categories/state.dart';
 import 'package:e_commerce/features/home/repo/home_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

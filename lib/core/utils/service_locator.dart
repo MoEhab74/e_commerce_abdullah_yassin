@@ -2,7 +2,8 @@ import 'package:e_commerce/core/api/dio_helper.dart';
 import 'package:e_commerce/core/utils/secure_local_storage.dart';
 import 'package:e_commerce/features/auth/repo/auth_repo.dart';
 import 'package:e_commerce/features/auth/cubit/auth_cubit.dart';
-import 'package:e_commerce/features/cart/cubits/categories/cubit.dart';
+import 'package:e_commerce/features/home/cubits/categories/cubit.dart';
+import 'package:e_commerce/features/home/cubits/products/cubit.dart';
 import 'package:e_commerce/features/home/repo/home_repo.dart';
 import 'package:get_it/get_it.dart';
 
@@ -25,4 +26,5 @@ void setUpServiceLocator() {
   // Cubits (Factory - new instance each time)
   locator.registerFactory<AuthCubit>(() => AuthCubit());
   locator.registerFactory<CategoriesCubit>(() => CategoriesCubit());
+  locator.registerFactory<ProductSCubit>(() => ProductSCubit());
 }

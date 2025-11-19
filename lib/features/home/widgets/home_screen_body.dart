@@ -2,6 +2,7 @@ import 'package:e_commerce/core/themes/app_styles.dart';
 import 'package:e_commerce/features/home/widgets/categories_list_view.dart';
 import 'package:e_commerce/features/home/widgets/product_item.dart';
 import 'package:e_commerce/features/home/widgets/search_and_filter.dart';
+import 'package:e_commerce/features/home/widgets/shop_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,26 +29,14 @@ class HomeScreenBody extends StatelessWidget {
           // Categories List View
           const CategoriesListView(),
           SizedBox(height: 16.0.h),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 16.h,
-              crossAxisSpacing: 16.w,
-              childAspectRatio: 0.75,
-            ),
-            itemBuilder: (context, index) {
-              return const ProductItem();
-            },
-            itemCount: 10,
-          ),
+          const ShopBuilder(),
         ],
       ),
     );
   }
 }
+
+
 
 /*
 Container(

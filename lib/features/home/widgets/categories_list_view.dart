@@ -1,7 +1,8 @@
 import 'dart:developer';
 
-import 'package:e_commerce/features/home/cubits/category/cubit.dart';
-import 'package:e_commerce/features/home/cubits/category/states.dart';
+import 'package:e_commerce/core/ui/loading_lottie.dart';
+import 'package:e_commerce/features/home/cubits/categories/cubit.dart';
+import 'package:e_commerce/features/home/cubits/categories/state.dart';
 import 'package:e_commerce/features/home/widgets/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +26,7 @@ class _CategoriesListViewState extends State<CategoriesListView> {
 
   // Fetch categories from Cubit
   _loadCategories() {
-    context.read<CategoryCubit>().fetchCategories();
+    context.read<CategoriesCubit>().fetchAllCategories();
   }
 
   @override
@@ -34,13 +35,13 @@ class _CategoriesListViewState extends State<CategoriesListView> {
       padding: const EdgeInsets.only(left: 24.0),
       child: SizedBox(
         height: 50.0,
-        child: BlocBuilder<CategoryCubit, CategoryState>(
+        child: BlocBuilder<CategoriesCubit, CategoriesState>(
           builder: (context, state) {
-            if (state is CategoryLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is CategoryError) {
-              return Center(child: Text(state.message));
-            } else if (state is CategoryLoaded) {
+            if (state is CategoriesLoadingState) {
+              return const Center(child: LoadingLottie());
+            } else if (state is CategoriesFailureState) {
+              return Center(child: Text(state.errorMessage));
+            } else if (state is CategoriesSuccessState) {
               categories = state.categories;
               return ListView.separated(
                 scrollDirection: Axis.horizontal,
@@ -51,6 +52,7 @@ class _CategoriesListViewState extends State<CategoriesListView> {
                         selectedIndex = index;
                       });
                       // Handle category selection logic here
+                      // getProductsByCategory Method
                     },
                     child: CategoryItem(
                       category: categories![index],

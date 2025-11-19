@@ -41,11 +41,11 @@ class RouteGenerator {
         name: AppRoutes.signUpScreen,
         builder: (context, state) => const SignUpScreen(),
       ),
-      GoRoute(
-        path: AppRoutes.productDetailsScreen,
-        name: AppRoutes.productDetailsScreen,
-        builder: (context, state) => const ProductDetailScreen(),
-      ),
+      // GoRoute(
+      //   path: AppRoutes.productDetailsScreen,
+      //   name: AppRoutes.productDetailsScreen,
+      //   builder: (context, state) => const ProductDetailScreen(),
+      // ),
       GoRoute(
         path: AppRoutes.addressScreenBody,
         name: AppRoutes.addressScreenBody,

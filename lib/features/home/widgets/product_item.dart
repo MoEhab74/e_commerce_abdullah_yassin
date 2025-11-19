@@ -1,9 +1,8 @@
 // product_item.dart
-import 'package:e_commerce/core/routing/app_routes.dart';
 import 'package:e_commerce/features/home/models/product_model.dart';
+import 'package:e_commerce/features/home/screens/product_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({super.key, this.onTap, required this.product});
@@ -14,9 +13,11 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(
-          context,
-        ).push(AppRoutes.productDetailsScreen, extra: product);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ProductDetailScreen(product: product),
+          ),
+        );
       },
       child: Card(
         color: Colors.white,

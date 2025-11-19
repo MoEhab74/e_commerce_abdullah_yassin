@@ -16,7 +16,7 @@ class ProductDetailScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         foregroundColor: AppColors.primaryColor,
       ),
-      body: const ProductsDetailsBody(),
+      body:  ProductsDetailsBody(product: product),
     );
   }
 }

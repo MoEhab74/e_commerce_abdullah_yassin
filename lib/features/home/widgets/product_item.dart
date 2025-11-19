@@ -14,7 +14,9 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRoutes.productDetailsScreen);
+        GoRouter.of(
+          context,
+        ).push(AppRoutes.productDetailsScreen, extra: product);
       },
       child: Card(
         color: Colors.white,
@@ -38,7 +40,6 @@ class ProductItem extends StatelessWidget {
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
-
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,

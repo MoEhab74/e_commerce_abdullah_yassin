@@ -2,6 +2,8 @@ import 'package:e_commerce/core/api/dio_helper.dart';
 import 'package:e_commerce/core/utils/secure_local_storage.dart';
 import 'package:e_commerce/features/auth/repo/auth_repo.dart';
 import 'package:e_commerce/features/auth/cubit/auth_cubit.dart';
+import 'package:e_commerce/features/cart/cubits/categories/cubit.dart';
+import 'package:e_commerce/features/home/repo/home_repo.dart';
 import 'package:get_it/get_it.dart';
 
 GetIt locator = GetIt.instance;
@@ -10,15 +12,17 @@ void setUpServiceLocator() {
   // LazySingleton ===> Single instance throughout the app lifecycle,
   // and created when it is requested for the first time only
 
-  // AuthRepo depends on DioHelper ===> So DioHelper should be registered first
+  // Core services
   locator.registerLazySingleton<DioHelper>(() => DioHelper());
-  locator.registerLazySingleton<AuthRepo>(() => AuthRepo(locator<DioHelper>()));
-
-  // Register AuthCubit as factory ===> New instance each time
-  locator.registerFactory<AuthCubit>(() => AuthCubit());
-
-  // Register the FlutterSecureStorage as LazySingleton
   locator.registerLazySingleton<SecureLocalStorageHelper>(
     () => SecureLocalStorageHelper(),
   );
+
+  // Repositories (LazySingleton - single instance)
+  locator.registerLazySingleton<AuthRepo>(() => AuthRepo(locator<DioHelper>()));
+  locator.registerLazySingleton<HomeRepo>(() => HomeRepo(locator<DioHelper>()));
+
+  // Cubits (Factory - new instance each time)
+  locator.registerFactory<AuthCubit>(() => AuthCubit());
+  locator.registerFactory<CategoriesCubit>(() => CategoriesCubit());
 }

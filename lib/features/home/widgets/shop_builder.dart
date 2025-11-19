@@ -1,26 +1,63 @@
+import 'package:e_commerce/core/ui/loading_lottie.dart';
+import 'package:e_commerce/features/home/cubits/products/cubit.dart';
+import 'package:e_commerce/features/home/cubits/products/state.dart';
+import 'package:e_commerce/features/home/models/product_model.dart';
 import 'package:e_commerce/features/home/widgets/product_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ShopBuilder extends StatelessWidget {
+class ShopBuilder extends StatefulWidget {
   const ShopBuilder({super.key});
 
   @override
+  State<ShopBuilder> createState() => _ShopBuilderState();
+}
+
+class _ShopBuilderState extends State<ShopBuilder> {
+  List<ProductModel> products = [];
+  @override
+  void initState() {
+    super.initState();
+    // Initial fetch of all products
+    context.read<ProductSCubit>().getAllProducts();
+  }
+  @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 16.h,
-        crossAxisSpacing: 16.w,
-        childAspectRatio: 0.75,
-      ),
-      itemBuilder: (context, index) {
-        return const ProductItem();
+    return BlocBuilder<ProductSCubit, ProductsState>(
+      builder: (context, state) {
+        if (state is ProductsLoadingState) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.4,
+            child: const Center(child: LoadingLottie()),
+          );
+        } else if (state is ProductsFailureState) {
+          // Handle the error state with an aesthetic message
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: Center(child: Text(state.errorMessage)),
+          );
+        } else if (state is ProductsSuccessState) {
+          products = state.products as List<ProductModel>;
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 16.h,
+              crossAxisSpacing: 16.w,
+              childAspectRatio: 0.75,
+            ),
+            itemBuilder: (context, index) {
+              return ProductItem(product: products[index]);
+            },
+            itemCount: products.length,
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
       },
-      itemCount: 10,
     );
   }
 }

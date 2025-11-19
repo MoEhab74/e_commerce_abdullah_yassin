@@ -2,15 +2,22 @@ import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({super.key, this.category, this.isSelected = false});
+  const CategoryItem({
+    super.key,
+    this.category,
+    this.isSelected = false,
+    this.margin,
+  });
   final String? category;
   final bool isSelected;
+  final EdgeInsetsGeometry? margin;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50.0,
       child: AnimatedContainer(
+        margin: margin ?? EdgeInsets.zero,
         duration: const Duration(milliseconds: 250),
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         decoration: BoxDecoration(

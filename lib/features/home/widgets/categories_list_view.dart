@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:e_commerce/core/ui/loading_lottie.dart';
 import 'package:e_commerce/features/home/cubits/categories/cubit.dart';
 import 'package:e_commerce/features/home/cubits/categories/state.dart';
+import 'package:e_commerce/features/home/cubits/products/cubit.dart';
 import 'package:e_commerce/features/home/widgets/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +33,7 @@ class _CategoriesListViewState extends State<CategoriesListView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24.0),
+      padding: const EdgeInsets.only(left: 16.0),
       child: SizedBox(
         height: 50.0,
         child: BlocBuilder<CategoriesCubit, CategoriesState>(
@@ -53,8 +54,16 @@ class _CategoriesListViewState extends State<CategoriesListView> {
                       });
                       // Handle category selection logic here
                       // getProductsByCategory Method
+                      index == 0
+                          ? context.read<ProductSCubit>().getAllProducts()
+                          : context.read<ProductSCubit>().getProductsByCategory(
+                              categories![index],
+                            );
                     },
                     child: CategoryItem(
+                      margin: index + 1 == categories?.length
+                          ? const EdgeInsets.only(right: 16.0)
+                          : null,
                       category: categories![index],
                       isSelected: selectedIndex == index,
                     ),

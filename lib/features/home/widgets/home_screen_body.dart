@@ -1,6 +1,5 @@
 import 'package:e_commerce/core/themes/app_styles.dart';
 import 'package:e_commerce/features/home/widgets/categories_list_view.dart';
-import 'package:e_commerce/features/home/widgets/product_item.dart';
 import 'package:e_commerce/features/home/widgets/search_and_filter.dart';
 import 'package:e_commerce/features/home/widgets/shop_builder.dart';
 import 'package:flutter/material.dart';

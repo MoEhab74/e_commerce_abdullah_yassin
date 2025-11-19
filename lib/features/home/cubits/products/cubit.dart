@@ -7,7 +7,7 @@ class ProductSCubit extends Cubit<ProductsState> {
   ProductSCubit() : super(ProductsInitialState());
 
   Future<void> getAllProducts() async {
-    emit(ProductsInitialState());
+    emit(ProductsLoadingState());
 
     final result = await locator<HomeRepo>().getAllProducts();
 
@@ -20,7 +20,7 @@ class ProductSCubit extends Cubit<ProductsState> {
   }
 
   Future<void> getProductsByCategory(String categoryName) async {
-    emit(ProductsInitialState());
+    emit(ProductsLoadingState());
 
     final result = await locator<HomeRepo>().getProductsByCategory(
       categoryName,

@@ -45,7 +45,7 @@ class HomeRepo {
   Future<Either<String, List<ProductModel>>> getProductsByCategory(String categoryName) async {
     List<ProductModel> productsCategory;
     final response = await _dioHelper.getRequest(
-      "${ApiEndPoints.getAllCategories}/$categoryName",
+      "${ApiEndPoints.getProducts}/category/$categoryName",
     );
     if (response.isSuccess) {
       productsCategory = productModelFromJson(response.data);

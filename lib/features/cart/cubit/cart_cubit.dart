@@ -22,10 +22,13 @@ class CartCubit extends Cubit<CartState> {
 
   // adding to cart
 
-  Future<void> addToCart({required ProductModel product, required int quantity}) async {
+  Future<void> addToCart({required ProductModel product}) async {
     emit(AddingToCartState());
 
-    final result = await locator<CartRepo>().addToCart(product, quantity);
+    final result = await locator<CartRepo>().addToCart(
+      product,
+      1,
+    );
 
     result.fold(
       (error) => emit(ErrorAddingToCartState(error)),

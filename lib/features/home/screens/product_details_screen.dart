@@ -1,7 +1,10 @@
 import 'package:e_commerce/core/themes/app_colors.dart';
+import 'package:e_commerce/core/utils/service_locator.dart';
+import 'package:e_commerce/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce/features/home/models/product_model.dart';
 import 'package:e_commerce/features/home/widgets/product_details_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({super.key, required this.product});
@@ -9,14 +12,17 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Details'),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        foregroundColor: AppColors.primaryColor,
+    return BlocProvider(
+      create: (context) => locator<CartCubit>(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Details'),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          foregroundColor: AppColors.primaryColor,
+        ),
+        body: ProductsDetailsBody(product: product),
       ),
-      body:  ProductsDetailsBody(product: product),
     );
   }
 }

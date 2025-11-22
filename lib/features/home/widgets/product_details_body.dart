@@ -1,9 +1,14 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:e_commerce/core/themes/app_styles.dart';
 import 'package:e_commerce/core/ui/primary_button_widget.dart';
+import 'package:e_commerce/core/utils/animated_snack_bar.dart';
+import 'package:e_commerce/features/cart/cubit/cart_cubit.dart';
+import 'package:e_commerce/features/cart/cubit/cart_states.dart';
 import 'package:e_commerce/features/home/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductsDetailsBody extends StatelessWidget {
@@ -119,7 +124,34 @@ class ProductsDetailsBody extends StatelessWidget {
               ),
               SizedBox(width: 16.w),
               Expanded(
-                child: AppButton(text: 'Add to Cart', onPressed: () {}),
+                child: BlocConsumer<CartCubit, CartState>(
+                  listener: (context, state) {
+                    if (state is SuccessAddingToCartState) {
+                      showAnimatedSnackbar(
+                        context,
+                        message: 'Product added to cart successfully!',
+                        type: AnimatedSnackBarType.success,
+                      );
+                    } else if (state is ErrorAddingToCartState) {
+                      showAnimatedSnackbar(
+                        context,
+                        message:
+                            'Failed to add product to cart: ${state.message}',
+                        type: AnimatedSnackBarType.error,
+                      );
+                    }
+                  },
+
+                  builder: (context, state) {
+                    return AppButton(
+                      text: state is AddingToCartState ? 'Adding...' : 'Add to Cart',
+                      onPressed: state is AddingToCartState ? null : () {
+                        // Add to cart from CartCubit
+                        context.read<CartCubit>().addToCart(product: product);
+                      },
+                    );
+                  },
+                ),
               ),
             ],
           ),

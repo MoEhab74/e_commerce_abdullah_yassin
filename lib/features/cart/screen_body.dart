@@ -1,9 +1,12 @@
 import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:e_commerce/core/ui/primary_button_widget.dart';
 import 'package:e_commerce/core/ui/screen_title.dart';
+import 'package:e_commerce/features/cart/cubit/cart_cubit.dart';
+import 'package:e_commerce/features/cart/cubit/cart_states.dart';
 import 'package:e_commerce/features/cart/widgets/cart_item.dart';
 import 'package:e_commerce/features/cart/widgets/order_details.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartScreenBody extends StatelessWidget {
@@ -18,16 +21,46 @@ class CartScreenBody extends StatelessWidget {
             child: Column(
               children: [
                 // Title
-               const ScreenTitle(title: 'My Cart'),
+                const ScreenTitle(title: 'My Cart'),
                 // List of Cart Items
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return const CartItem();
+                BlocBuilder<CartCubit, CartState>(
+                  builder: (context, state) {
+                    if (state is CartLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is CartError) {
+                      return Center(
+                        child: Text(
+                          'Error: ${state.message}',
+                          style: TextStyle(fontSize: 16.sp, color: Colors.red),
+                        ),
+                      );
+                    } else if (state is CartLoaded) {
+                      final cartItems = state.cart.products;
+                      if (cartItems.isEmpty) {
+                        return Center(
+                          child: Text(
+                            'Your cart is empty',
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              color: AppColors.grayColor,
+                            ),
+                          ),
+                        );
+                      }
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: cartItems.length,
+                        itemBuilder: (context, index) {
+                          final product = cartItems[index];
+                          return CartItem(product: product);
+                        },
+                      );
+                    }
+                    return const SizedBox.shrink();
                   },
                 ),
+                SizedBox(height: 16.h),
                 // subtotal, vat and shipping fees
                 const OrderDetails(),
               ],

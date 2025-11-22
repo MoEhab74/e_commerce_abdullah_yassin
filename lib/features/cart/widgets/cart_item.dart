@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:e_commerce/core/themes/app_styles.dart';
+import 'package:e_commerce/features/cart/models/cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,8 +9,9 @@ import 'quantity_selector.dart';
 
 class CartItem extends StatefulWidget {
   const CartItem({
-    super.key,
+    super.key, required this.product,
   });
+  final Product product;
 
   @override
   State<CartItem> createState() => _CartItemState();
@@ -37,7 +40,7 @@ class _CartItemState extends State<CartItem> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4.r),
               image: const DecorationImage(
-                image: NetworkImage(
+                image: CachedNetworkImageProvider(
                   'https://webandcrafts.com/_next/image?url=https%3A%2F%2Fadmin.wac.co%2Fuploads%2FWhat_is_E_commerce_and_What_are_its_Applications_2_d2eb0d4402.jpg&w=4500&q=90',
                 ),
                 fit: BoxFit.cover,
@@ -58,7 +61,7 @@ class _CartItemState extends State<CartItem> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Product Name',
+                          'Product id ${widget.product.productId}',
                           style: AppStyles.cartTitleStyle
                         ),
                         SizedBox(height: 4.h),

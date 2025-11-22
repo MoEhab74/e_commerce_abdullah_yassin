@@ -76,7 +76,7 @@ class DioHelper {
     }) async {
       try {
         final response = await _dio!.put(path, data: data);
-        if (response.statusCode == 200) {
+        if (response.statusCode == 200 || response.statusCode == 201) {
           return AppResponse(isSuccess: true, data: response.data, statusCode: response.statusCode);
         } else {
           return AppResponse(

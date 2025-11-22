@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/themes/app_colors.dart';
 import 'package:e_commerce/core/ui/loading_lottie.dart';
 import 'package:e_commerce/features/home/cubits/products/cubit.dart';
 import 'package:e_commerce/features/home/cubits/products/state.dart';
@@ -39,20 +40,27 @@ class _ShopBuilderState extends State<ShopBuilder> {
           );
         } else if (state is ProductsSuccessState) {
           products = state.products as List<ProductModel>;
-          return GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 16.h,
-              crossAxisSpacing: 16.w,
-              childAspectRatio: 0.75,
-            ),
-            itemBuilder: (context, index) {
-              return ProductItem(product: products[index]);
+          return RefreshIndicator(
+            color: AppColors.primaryColor,
+            backgroundColor: Colors.white,
+            onRefresh: () async {
+              context.read<ProductSCubit>().getAllProducts();
             },
-            itemCount: products.length,
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16.h,
+                crossAxisSpacing: 16.w,
+                childAspectRatio: 0.75,
+              ),
+              itemBuilder: (context, index) {
+                return ProductItem(product: products[index]);
+              },
+              itemCount: products.length,
+            ),
           );
         } else {
           return const SizedBox.shrink();

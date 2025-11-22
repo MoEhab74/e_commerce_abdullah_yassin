@@ -119,9 +119,10 @@ class _LoginFormState extends State<LoginForm> {
                     // Handle login action
                     if (_formKey.currentState!.validate()) {
                       // Login logic here from the cubit or bloc
+                      // Don't forget to replace with actual user inputs
                       context.read<AuthCubit>().login(
-                        username: _usernameController.text,
-                        password: _passwordController.text,
+                        username: 'johnd',
+                        password: r'm38rm$',
                       );
                       // GoRouter.of(
                       //   context,

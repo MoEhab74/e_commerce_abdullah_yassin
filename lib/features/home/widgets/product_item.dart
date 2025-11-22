@@ -1,4 +1,6 @@
 // product_item.dart
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce/core/ui/loading_lottie.dart';
 import 'package:e_commerce/features/home/models/product_model.dart';
 import 'package:e_commerce/features/home/screens/product_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +30,12 @@ class ProductItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-              product.image,
+            CachedNetworkImage(
+              placeholder: (context, url) => const Center(
+                child: LoadingLottie(),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              imageUrl: product.image,
               width: double.infinity,
               height: 150.h,
               fit: BoxFit.fill,

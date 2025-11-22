@@ -68,4 +68,29 @@ class DioHelper {
       );
     }
   }
+
+  // Put Request
+    Future<AppResponse> putRequest(
+      String path, {
+      Map<String, dynamic>? data,
+    }) async {
+      try {
+        final response = await _dio!.put(path, data: data);
+        if (response.statusCode == 200) {
+          return AppResponse(isSuccess: true, data: response.data, statusCode: response.statusCode);
+        } else {
+          return AppResponse(
+            isSuccess: false,
+            data: response.data,
+            statusCode: response.statusCode,
+          );
+        }
+      } on DioException catch (e) {
+        return AppResponse(
+          isSuccess: false,
+          exception: e,
+          statusCode: e.response?.statusCode,
+        );
+      }
+    }
 }

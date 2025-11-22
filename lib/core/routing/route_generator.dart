@@ -3,10 +3,10 @@ import 'package:e_commerce/features/account/screens/address_screen_body.dart';
 import 'package:e_commerce/features/auth/cubit/auth_cubit.dart';
 import 'package:e_commerce/features/auth/login/login_screen.dart';
 import 'package:e_commerce/features/auth/sign_up/screen.dart';
+import 'package:e_commerce/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce/features/home/cubits/categories/cubit.dart';
 import 'package:e_commerce/features/home/cubits/products/cubit.dart';
 import 'package:e_commerce/features/home/screens/home_screen.dart';
-import 'package:e_commerce/features/home/screens/product_details_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,6 +32,7 @@ class RouteGenerator {
           providers: [
             BlocProvider(create: (context) => locator<CategoriesCubit>()),
             BlocProvider(create: (context) => locator<ProductSCubit>()),
+            BlocProvider(create: (context) => locator<CartCubit>()),
           ],
           child: const HomeScreen(),
         ),

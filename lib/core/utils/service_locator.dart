@@ -2,6 +2,7 @@ import 'package:e_commerce/core/api/dio_helper.dart';
 import 'package:e_commerce/core/utils/secure_local_storage.dart';
 import 'package:e_commerce/features/auth/repo/auth_repo.dart';
 import 'package:e_commerce/features/auth/cubit/auth_cubit.dart';
+import 'package:e_commerce/features/cart/repo/cart_repo.dart';
 import 'package:e_commerce/features/home/cubits/categories/cubit.dart';
 import 'package:e_commerce/features/home/cubits/products/cubit.dart';
 import 'package:e_commerce/features/home/repo/home_repo.dart';
@@ -22,6 +23,7 @@ void setUpServiceLocator() {
   // Repositories (LazySingleton - single instance)
   locator.registerLazySingleton<AuthRepo>(() => AuthRepo(locator<DioHelper>()));
   locator.registerLazySingleton<HomeRepo>(() => HomeRepo(locator<DioHelper>()));
+  locator.registerLazySingleton<CartRepo>(() => CartRepo(locator<DioHelper>()));
 
   // Cubits (Factory - new instance each time)
   locator.registerFactory<AuthCubit>(() => AuthCubit());

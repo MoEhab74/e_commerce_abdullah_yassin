@@ -8,8 +8,6 @@ import 'package:e_commerce/core/ui/loading_lottie.dart';
 import 'package:e_commerce/core/ui/primary_button_widget.dart';
 import 'package:e_commerce/core/ui/primary_text_form_field.dart';
 import 'package:e_commerce/core/utils/animated_snack_bar.dart';
-import 'package:e_commerce/core/utils/secure_local_storage.dart';
-import 'package:e_commerce/core/utils/service_locator.dart';
 import 'package:e_commerce/features/auth/cubit/auth_cubit.dart';
 import 'package:e_commerce/features/auth/cubit/auth_states.dart';
 import 'package:flutter/material.dart';
@@ -38,20 +36,9 @@ class _LoginFormState extends State<LoginForm> {
     super.initState();
     _usernameController = TextEditingController();
     _passwordController = TextEditingController();
-    _checkExistingToken();
   }
 
-  void _checkExistingToken() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      locator<SecureLocalStorageHelper>().readData('token').then((value) {
-        if (value.isNotEmpty && value != '0') {
-          GoRouter.of(context).pushReplacement(AppRoutes.homeScreen);
-        } else {
-          debugPrint('No token found in secure storage.');
-        }
-      });
-    });
-  }
+  
   @override
   Widget build(BuildContext context) {
     return Form(

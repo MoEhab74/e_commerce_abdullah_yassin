@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:e_commerce/core/ui/loading_lottie.dart';
 import 'package:e_commerce/features/home/cubits/categories/cubit.dart';
 import 'package:e_commerce/features/home/cubits/categories/state.dart';
 import 'package:e_commerce/features/home/cubits/products/cubit.dart';
@@ -38,11 +37,7 @@ class _CategoriesListViewState extends State<CategoriesListView> {
         height: 50.0,
         child: BlocBuilder<CategoriesCubit, CategoriesState>(
           builder: (context, state) {
-            if (state is CategoriesLoadingState) {
-              return const Center(child: LoadingLottie());
-            } else if (state is CategoriesFailureState) {
-              return Center(child: Text(state.errorMessage));
-            } else if (state is CategoriesSuccessState) {
+            if (state is CategoriesSuccessState) {
               categories = state.categories;
               return ListView.separated(
                 scrollDirection: Axis.horizontal,

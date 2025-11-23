@@ -7,6 +7,7 @@ import 'package:e_commerce/features/cart/cubit/cart_cubit.dart';
 import 'package:e_commerce/features/home/cubits/categories/cubit.dart';
 import 'package:e_commerce/features/home/cubits/products/cubit.dart';
 import 'package:e_commerce/features/home/screens/home_screen.dart';
+import 'package:e_commerce/features/splash/screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,7 +15,7 @@ import 'app_routes.dart';
 
 class RouteGenerator {
   static GoRouter mainRoutingInOurApp = GoRouter(
-    initialLocation: AppRoutes.loginScreen,
+    initialLocation: AppRoutes.splashScreen,
     // List of Routes
     routes: [
       GoRoute(
@@ -42,15 +43,15 @@ class RouteGenerator {
         name: AppRoutes.signUpScreen,
         builder: (context, state) => const SignUpScreen(),
       ),
-      // GoRoute(
-      //   path: AppRoutes.productDetailsScreen,
-      //   name: AppRoutes.productDetailsScreen,
-      //   builder: (context, state) => const ProductDetailScreen(),
-      // ),
       GoRoute(
         path: AppRoutes.addressScreenBody,
         name: AppRoutes.addressScreenBody,
         builder: (context, state) => const AddressScreenBody(),
+      ),
+      GoRoute(
+        path: AppRoutes.splashScreen,
+        name: AppRoutes.splashScreen,
+        builder: (context, state) => const SplachScreen(),
       ),
     ],
   );

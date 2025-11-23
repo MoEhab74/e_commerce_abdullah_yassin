@@ -7,6 +7,7 @@ import 'package:e_commerce/features/home/widgets/product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class ShopBuilder extends StatefulWidget {
   const ShopBuilder({super.key});
@@ -23,6 +24,7 @@ class _ShopBuilderState extends State<ShopBuilder> {
     // Initial fetch of all products
     context.read<ProductSCubit>().getAllProducts();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductSCubit, ProductsState>(
@@ -46,20 +48,32 @@ class _ShopBuilderState extends State<ShopBuilder> {
             onRefresh: () async {
               context.read<ProductSCubit>().getAllProducts();
             },
-            child: GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16.h,
-                crossAxisSpacing: 16.w,
-                childAspectRatio: 0.75,
+            child: AnimationLimiter(
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16.h,
+                  crossAxisSpacing: 16.w,
+                  childAspectRatio: 0.75,
+                ),
+                itemBuilder: (context, index) {
+                  return AnimationConfiguration.staggeredGrid(
+                    position: index,
+                    duration: const Duration(milliseconds: 500),
+                    columnCount: 2,
+                    child: SlideAnimation(
+                      verticalOffset: 50.0,
+                      child: FadeInAnimation(
+                        child: ProductItem(product: products[index]),
+                      ),
+                    ),
+                  );
+                },
+                itemCount: products.length,
               ),
-              itemBuilder: (context, index) {
-                return ProductItem(product: products[index]);
-              },
-              itemCount: products.length,
             ),
           );
         } else {

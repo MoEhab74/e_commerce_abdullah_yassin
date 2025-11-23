@@ -62,10 +62,10 @@ class _ShopBuilderState extends State<ShopBuilder> {
                 itemBuilder: (context, index) {
                   return AnimationConfiguration.staggeredGrid(
                     position: index,
-                    duration: const Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 600),
                     columnCount: 2,
                     child: SlideAnimation(
-                      verticalOffset: 50.0,
+                      verticalOffset: 200.0,
                       child: FadeInAnimation(
                         child: ProductItem(product: products[index]),
                       ),

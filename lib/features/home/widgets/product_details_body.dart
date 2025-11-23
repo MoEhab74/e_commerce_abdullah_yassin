@@ -27,15 +27,18 @@ class ProductsDetailsBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Product Image
-                Center(
-                  child: Container(
-                    height: 370.h,
-                    width: 340.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(product.image),
-                        fit: BoxFit.fill,
+                Hero(
+                  tag: product.id,
+                  child: Center(
+                    child: Container(
+                      height: 370.h,
+                      width: 340.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.r),
+                        image: DecorationImage(
+                          image: CachedNetworkImageProvider(product.image),
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                   ),

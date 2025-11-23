@@ -30,15 +30,18 @@ class ProductItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CachedNetworkImage(
-              placeholder: (context, url) => const Center(
-                child: LoadingLottie(),
+            Hero(
+              tag: product.id,
+              child: CachedNetworkImage(
+                placeholder: (context, url) => const Center(
+                  child: LoadingLottie(),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                imageUrl: product.image,
+                width: double.infinity,
+                height: 150.h,
+                fit: BoxFit.fill,
               ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-              imageUrl: product.image,
-              width: double.infinity,
-              height: 150.h,
-              fit: BoxFit.fill,
             ),
             SizedBox(height: 8.h),
             Text(

@@ -40,4 +40,18 @@ class AuthRepo {
       return Left(msg);
     }
   }
+
+  // Logout method
+  Future<Either<String, void>> logOut() async {
+    try {
+        // Delete the token from secure storage
+        await locator<SecureLocalStorageHelper>().deleteData('token');
+        log('Token deleted successfully');
+        return const Right(null);
+      
+    } catch (e) {
+      log('Logout failed: $e');
+      return Left('Logout failed: $e');
+    }
+  }
 }

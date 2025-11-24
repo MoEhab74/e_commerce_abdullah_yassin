@@ -109,7 +109,7 @@ class _LoginFormState extends State<LoginForm> {
                       // Don't forget to replace with actual user inputs
                       context.read<AuthCubit>().login(
                         username: 'johnd',
-                        password: r'm38rm$',
+                        password: r'm38rmF$',
                       );
                       // GoRouter.of(
                       //   context,

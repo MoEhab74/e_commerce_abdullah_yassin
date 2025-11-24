@@ -34,6 +34,7 @@ class RouteGenerator {
             BlocProvider(create: (context) => locator<CategoriesCubit>()),
             BlocProvider(create: (context) => locator<ProductSCubit>()),
             BlocProvider(create: (context) => locator<CartCubit>()),
+            BlocProvider(create: (context) => locator<AuthCubit>()),
           ],
           child: const HomeScreen(),
         ),
@@ -46,7 +47,10 @@ class RouteGenerator {
       GoRoute(
         path: AppRoutes.addressScreenBody,
         name: AppRoutes.addressScreenBody,
-        builder: (context, state) => const AddressScreenBody(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => locator<AuthCubit>(),
+          child: const AddressScreenBody(),
+        ),
       ),
       GoRoute(
         path: AppRoutes.splashScreen,

@@ -31,4 +31,20 @@ class AuthCubit extends Cubit<AuthStates> {
       );
     });
   }
+
+  Future<void> logOut() async {
+    emit(AuthLoadingState());
+    await locator<AuthRepo>().logOut().then((result) {
+      result.fold(
+        (failure) {
+          debugPrint('Logout failed: $failure');
+          emit(AuthFailureState(errorMessage: failure.toString()));
+        },
+        (_) {
+          debugPrint('Logout successful');
+          emit(AuthLoggedOutState());
+        },
+      );
+    });
+  }
 }
